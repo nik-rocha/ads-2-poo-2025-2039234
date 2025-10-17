@@ -92,22 +92,28 @@ $produto1 = new Produto('Teclado', 120.00, 10);
 
 try {
     $pedido1 = new Pedido('P-001');
+    // comentar abaixo para ver o último cenário
     $pedido1->adicionarItem($produto1, 2);
     echo $pedido1->exibirResumo();
     echo "<br>";
+    // comentar acima para ver o último cenário
+
     // $pedido1->adicionarItem($produto1,50);
     // echo "<br>";
 
-    // ^ tirar do comentário para ver erro
+    // ^ tirar do comentário para ver o cenário de erro
+
+    // comentar abaixo para ver o último cenário
     $pedido1->removerItem('Teclado');
     echo $pedido1->exibirResumo();
     echo "<br>";
+    // comentar acima para ver o último cenário
 
     // $produto1->atualizarPreco(150.00);
     // $pedido1->adicionarItem($produto1, 2);
     // echo $pedido1->exibirResumo();
 
-    // ^ tirar do comentário para ver o cenário com o novo preço
+    // ^ tirar do comentário para ver o cenário com o novo preço (último)
 } catch (InvalidArgumentException $e) {
     echo $e->getMessage();
 }
