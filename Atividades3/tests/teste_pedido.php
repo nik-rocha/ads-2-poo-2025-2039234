@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Produto.php';
+require_once '../Produto.php';
 
 class Pedido
 {
@@ -68,18 +68,12 @@ class Pedido
     {
         foreach ($this->itens as $index => $item) {
             if ($item['produto']->getNome() === $nomeProduto) {
-                $item['quantidade'] -= 1;
+                $item['produto']->repor($item['quantidade']);
 
-                $item['produto']->repor(1);
+                $this->valorTotal -= ($item['produto']->getPreco() * $item['quantidade']);
 
-                $this->valorTotal -= ($item['produto']->getPreco());
-
-                if ($item['quantidade'] <= 0) {
-                    unset($this->itens[$index]);
-                    $this->itens = array_values($this->itens);
-                    return;
-                }
-
+                unset($this->itens[$index]);
+                $this->itens = array_values($this->itens);
                 return;
             }
         }
@@ -90,21 +84,30 @@ class Pedido
     public function exibirResumo(): string
     {
         $itensFormatados = print_r($this->itens, true);
-        return "Bem-vindo! Pedido nº {$this->numeroPedido} <br><pre>{$itensFormatados}<pre><br>Valor total: {$this->valorTotal} <br>";
+        return "Bem-vindo! Pedido nº {$this->numeroPedido} <br><pre>{$itensFormatados}<pre><br>Valor total: " .number_format($this->valorTotal, 2)."<br>";
     }
 }
 
-$produto1 = new Produto('Coca-Cola 2L', 8.00, 4);
-$produto2 = new Produto('Fone Bluethoot Redragon Zeus X', 500.00, 2);
+$produto1 = new Produto('Teclado', 120.00, 10);
 
 try {
-    $pedido1 = new Pedido(45);
+    $pedido1 = new Pedido('P-001');
     $pedido1->adicionarItem($produto1, 2);
-    $pedido1->adicionarItem($produto2, 1);
     echo $pedido1->exibirResumo();
-    "<br>";
-    $pedido1->removerItem('Fone Bluethoot Redragon Zeus X');
+    echo "<br>";
+    // $pedido1->adicionarItem($produto1,50);
+    // echo "<br>";
+
+    // ^ tirar do comentário para ver erro
+    $pedido1->removerItem('Teclado');
     echo $pedido1->exibirResumo();
+    echo "<br>";
+
+    // $produto1->atualizarPreco(150.00);
+    // $pedido1->adicionarItem($produto1, 2);
+    // echo $pedido1->exibirResumo();
+
+    // ^ tirar do comentário para ver o cenário com o novo preço
 } catch (InvalidArgumentException $e) {
     echo $e->getMessage();
 }
