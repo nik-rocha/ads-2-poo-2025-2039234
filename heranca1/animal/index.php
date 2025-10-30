@@ -3,16 +3,17 @@
 require_once "Animal.php";
 require_once "Cachorro.php";
 require_once "Gato.php";
+require_once "Pato.php";
 
-$animal = new Animal("Snow");
-$cachorro = new Cachorro("Rex");
-$gato = new Gato("Sushi");
+$animais = [
+    new Cachorro("Rex"),
+    new Gato("Marry"),
+    new Pato("Donald")
+];
 
-echo $animal->descrever()."<br>";
-echo $animal->fazBarulho()."<br>";
+foreach ($animais as $animal) {
+    echo $animal->descrever(). "<br>";
+    echo "Som {$animal->fazBarulho()}<br>";
 
-echo $cachorro->descrever()."<br>";
-echo $cachorro->fazBarulho()."<br>";
-
-echo $gato->descrever()."<br>";
-echo $gato->fazBarulho()."<br>";
+    echo str_repeat('-', 30) . "<br>";
+}

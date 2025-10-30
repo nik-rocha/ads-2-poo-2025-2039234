@@ -19,7 +19,7 @@ class Animal
         if(!empty($nome)) {
             $this->nome = $nome;
         } else {
-            $this->nome = "Nome vazio";
+            $this->nome = "Animal vazio";
         }
     }
 
@@ -30,6 +30,6 @@ class Animal
 
     public function descrever(): string
     {
-        return "Eu me chamo {$this->nome}";
+        return "Eu me chamo Animal {$this->nome}";
     }
 }
