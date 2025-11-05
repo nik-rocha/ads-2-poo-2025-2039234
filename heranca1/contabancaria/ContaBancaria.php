@@ -32,7 +32,7 @@ class ContaBancaria
 
     public function setSaldo(float $saldo)
     {
-        if ($saldo <= 0) {
+        if ($saldo < 0) {
             return "Valor de saldo inválido.";
         }
 
@@ -55,6 +55,6 @@ class ContaBancaria
         }
 
         $this->saldo -= $valor;
-        return "Foram sacados R${$valor} de seu saldo.";
+        return "Foram sacados R\${$valor} de seu saldo.";
     }
 }

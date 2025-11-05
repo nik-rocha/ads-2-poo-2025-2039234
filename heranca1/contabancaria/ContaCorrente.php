@@ -23,14 +23,18 @@ class ContaCorrente extends ContaBancaria
     public function sacar($valor): string
     {
         if ($valor <= 0 || $valor > $this->getSaldo() + $this->limite) {
-            return "Valor indisponível para saque.";
+            return "Valor indisponível para saque. <br>";
+        } elseif($valor <= $this->getSaldo()) {
+            $this->setSaldo($this->getSaldo() - $valor);
+            return "Saque de R\${$valor} realizado. R\$0 do seu limite foi utilizado.";
+        } elseif($valor > $this->getSaldo() && $valor <= ($this->getSaldo() + $this->limite)) {
+            $limiteUsado = $valor - $this->getSaldo();
+            $this->setSaldo(0);
+            return "Saque de R\${$valor} realizado. R\${$limiteUsado} do seu limite foi utilizado.";
+        } elseif($this->getSaldo() < $valor && $valor > ($this->getSaldo() + $this->limite)) {
+            return "Valor inválido para saque.";
         }
 
-        if($valor > $this->limite) {
-            $this->setSaldo($this->getSaldo() - ($valor - $this->limite));
-            return "Saque de R\${$valor} realizado.";
-        } else {
-            return "Saque de R\${$valor} realizado.";
-        }
+        return "Um erro ocorreu.";
     }
 }

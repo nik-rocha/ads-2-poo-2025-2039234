@@ -4,7 +4,7 @@ require_once "ContaBancaria.php";
 
 class ContaPoupanca extends ContaBancaria
 {
-    public function renderJuros(float $taxa)
+    public function renderJuros(int $taxa)
     {
         $saldoRendido = ($this->getSaldo() * $taxa) / 100;
 
@@ -13,6 +13,6 @@ class ContaPoupanca extends ContaBancaria
         }
 
         $this->setSaldo($this->getSaldo() + $saldoRendido);
-        return "Taxa de {$taxa}% adicionada ao saldo.";
+        return "Taxa de {$taxa}% adicionada ao saldo. <br>";
     }
 }
