@@ -4,9 +4,21 @@ require_once "ContaBancaria.php";
 
 class ContaCorrente extends ContaBancaria
 {
-    private float $limite;
+    private float $limite = 0;
 
-    //public function Aqui você constrói o saldo
+    public function setLimite(float $limite)
+    {
+        if ($limite < 0) {
+            return "Limite inválido";
+        }
+
+        $this->limite = $limite;
+    }
+
+    public function getLimite(): float
+    {
+        return $this->limite;
+    }
 
     public function sacar($valor): string
     {
@@ -14,8 +26,11 @@ class ContaCorrente extends ContaBancaria
             return "Valor indisponível para saque.";
         }
 
-        $this->setSaldo($this->getSaldo() - $valor);
-
-        return "Saque de R${$valor} realizado.";
+        if($valor > $this->limite) {
+            $this->setSaldo($this->getSaldo() - ($valor - $this->limite));
+            return "Saque de R\${$valor} realizado.";
+        } else {
+            return "Saque de R\${$valor} realizado.";
+        }
     }
 }
