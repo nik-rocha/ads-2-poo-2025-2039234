@@ -59,7 +59,7 @@ class Veiculo
     public function acelerar($quantia): string
     {
         $this->velocidadeAtual += $quantia;
-        return "Velocidade atual: {$this->velocidadeAtual} <br>";
+        return "(".get_class($this) . " {$this->marca} {$this->modelo}) Velocidade atual: {$this->velocidadeAtual}km/h <br>";
     }
 
     public function frear($quantia): string
@@ -69,6 +69,6 @@ class Veiculo
         }
 
         $this->velocidadeAtual -= $quantia;
-        return "Velocidade atual: {$this->velocidadeAtual} <br>";
+        return "(".get_class($this) . " {$this->marca} {$this->modelo}) Velocidade atual: {$this->velocidadeAtual}km/h após frear <br>";
     }
 }

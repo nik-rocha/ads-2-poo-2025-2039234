@@ -10,6 +10,6 @@ class Moto extends Veiculo
             return "Impossível empinar a moto! <br>";
         }
 
-        return "A moto está empinando.";
+        return "A moto {$this->marca} {$this->modelo} está empinando. <br>";
     }
 }

@@ -12,3 +12,6 @@ echo $carro1->abrirPortas(1);
 $moto1 = new Moto("Yamaha", "MT-07", 2018);
 echo $moto1->acelerar(30);
 echo $moto1->empinar();
+
+echo $carro1->frear(20);
+echo $moto1->frear(20);

@@ -27,6 +27,6 @@ class Carro extends Veiculo
             return "Essa porta não existe. <br>";
         }
 
-        return "A porta número {$numeroPorta} foi aberta. <br>";
+        return "A porta número {$numeroPorta} do carro {$this->marca} {$this->modelo} foi aberta. <br>";
     }
 }
