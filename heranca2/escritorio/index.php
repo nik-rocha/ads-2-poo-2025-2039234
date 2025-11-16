@@ -21,30 +21,31 @@ $gavetaTeste = new Gaveta();
 $gavetaArma->adicionarItem($item1);
 $gavetaArma->adicionarItem($item2);
 $gavetaArma->adicionarItem($item3);
-echo (print_r($gavetaArma->listarItens()) . "<br><br>");
+print_r($gavetaArma->listarItens());
 
 $gavetaArma->removerItem("Glock .36");
-echo (print_r($gavetaArma->listarItens()) . "<br><br>");
+print_r($gavetaArma->listarItens());
 
 $armarioArma = new Armario();
 $armarioVazio = new Armario();
+$armarioRemover = new Armario();
 $armarioTeste = new Armario();
 $armarioArma->adicionarGaveta($gavetaArma);
 $armarioArma->adicionarGaveta($gavetaVazia);
 $armarioTeste->adicionarGaveta($gavetaTeste);
-echo (print_r($armarioArma->listarGavetas()) . "<br><br>");
+print_r($armarioArma->listarGavetas());
 
 $armarioArma->removerGaveta(1);
-echo (print_r($armarioArma->listarGavetas()) . "<br><br>");
+print_r($armarioArma->listarGavetas());
 
 $escritorioArma = new Escritorio();
 $escritorioArma->adicionarArmario($armarioArma);
 $escritorioArma->adicionarArmario($armarioVazio);
 $escritorioArma->adicionarArmario($armarioTeste);
-echo (print_r($escritorioArma->listarArmarios()) . "<br><br>");
+$escritorioArma->adicionarArmario($armarioRemover);
+print_r($escritorioArma->listarArmarios());
 
+$escritorioArma->removerArmario(3);
+print_r($escritorioArma->listarArmarios());
 
-$escritorioArma->removerArmario(1);
-echo (print_r($escritorioArma->listarArmarios()) . "<br><br>");
-
-echo (print_r($escritorioArma->auditoria()) . "<br><br>");
+print_r($escritorioArma->auditoria());

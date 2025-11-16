@@ -36,13 +36,21 @@ class Escritorio
     public function auditoria()
     {
         foreach($this->armarios as $k => $a) {
-            echo "<br>Armário ".$k + 1 .":<br>";
+            if (empty($a->getGavetas())) {
+                    echo "<br>Armário ".$k + 1 ." vazio.<br>";
+                } else {
+                    echo "<br>Armário ".$k + 1 .":<br>";
+                };
             foreach($a->getGavetas() as $k => $g) {
-                echo "----> Gaveta ".$k + 1 .":<br>";
+                if (empty($g->getItens())) {
+                    echo "----> Gaveta ".$k + 1 ." vazia.<br>";
+                } else {
+                    echo "----> Gaveta ".$k + 1 .":<br>";
+                };
                 foreach($g->getItens() as $k => $i) {
-                    echo "-------> Item ".$k + 1 .", Nome: ".$i->getNome().".<br>";
+                    echo "-------> Item ".$k + 1 .". Nome: ".$i->getNome()."<br>";
                 }
-            }
+            }                          
         }
     }
 }
