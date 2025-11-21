@@ -69,11 +69,18 @@ class Inventario
     public function capacidadeLivre(): string
     {
         $itensListados = [];
+        $espacoLivre = $this->getCapacidadeMaxima() - $this->getCounterCapacidade();
 
         foreach($this->itens as $item) {
             $itensListados[] = $item->getNome();
         }
 
-        return "<br> ======================== <br> Seu inventário 💼: <br><br>".implode('<br>', $itensListados)."<br><br>Espaço livre: {$this->counterCapacidade}/{$this->capacidadeMaxima} <br> ======================== <br>";
+        if(!empty($itensListados)) {
+            return "<br> ======================== <br> Seu inventário ✉: <br><br>"."> ".implode('<br> > ', $itensListados)."<br><br>Espaço livre: {$espacoLivre}/{$this->capacidadeMaxima} <br>
+            Espaço usado: {$this->getCounterCapacidade()}/{$this->capacidadeMaxima}<br>======================== <br>";
+        } else {
+            return "<br> ======================== <br> Seu inventário ✉: <br><br>Inventário vazio.<br><br>Espaço livre: {$espacoLivre}/{$this->capacidadeMaxima} <br>
+            Espaço usado: {$this->getCounterCapacidade()}/{$this->capacidadeMaxima}<br> ======================== <br>";
+        }
     }
 }

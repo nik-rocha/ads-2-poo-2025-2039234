@@ -34,12 +34,17 @@ echo $player1->coletarItem($magia2);
 echo $player1->coletarItem($defesa1);
 echo $player1->coletarItem($ataque2);
 
+echo $player1->getInventario()->capacidadeLivre();
+
 echo $player1->subirNivel();
 
 echo $player1->getInventario()->capacidadeLivre();
 
 echo $player2->coletarItem($ataque2);
 echo $player2->coletarItem($ataque2);
+
+echo $player2->getInventario()->capacidadeLivre();
+
 echo $player2->coletarItem($ataque2);
 
 echo $player2->getInventario()->capacidadeLivre();

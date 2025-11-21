@@ -52,21 +52,21 @@ class Player
     public function coletarItem(Item $item): string
     {
         if($this->inventario->getCounterCapacidade() + $item->getTamanho() > $this->inventario->getCapacidadeMaxima()) {
-            return "<br>✖️ Inventário cheio. Não é possível adicionar! ✖️<br>";
+            return "<br>✖ Inventário cheio. Não é possível adicionar! ✖<br>";
         }
 
         $this->inventario->adicionar($item);
-        return "<br>✨ {$this->getNickname()}: O item {$item->getNome()} está na sua mão e será adicionado ao seu inventário. ✨<br>";
+        return "<br>ᯓ★ {$this->getNickname()}: O item de {$item->getClasse()} {$item->getNome()} está na sua mão e será adicionado ao seu inventário. ★ᯓ<br>";
     }
 
     public function soltarItem(Item $item): string
     {
         if($this->inventario->getCounterCapacidade() - $item->getTamanho() < 0) {
-            return "<br>✖️ Seu inventário se encontra vazio! ✖️<br>";
+            return "<br>✖ Seu inventário se encontra vazio! ✖<br>";
         }
 
         $this->inventario->remover($item);
-        return "<br>💨 {$this->getNickname()}: O item {$item->getNome()} foi jogado fora. 💨<br>";
+        return "<br>⌯⌲ {$this->getNickname()}: O item {$item->getNome()} foi jogado fora. ⌯⌲<br>";
     }
 
     public function subirNivel()
@@ -74,6 +74,6 @@ class Player
         $this->setNivel($this->getNivel() + 1);
         $this->inventario->setCapacidadeMaxima($this->inventario->getCapacidadeMaxima() + $this->getNivel() * 3);
 
-        return "<br> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <br>📈 {$this->getNickname()}: Você chegou no nível {$this->getNivel()}! Seu inventário aumentou em ".($this->getNivel() * 3)." espaços! 📈<br> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <br>";
+        return "<br> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <br> ⋯⋅๑┈•✦ {$this->getNickname()}: Você chegou no nível {$this->getNivel()}! Seu inventário aumentou em ".($this->getNivel() * 3)." espaços! ⋯⋅๑┈•✦<br> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <br>";
     }
 }
